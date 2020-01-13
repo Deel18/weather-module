@@ -1,6 +1,6 @@
 {
-    "name" : "anax/noname",
-    "description": "A me page for the ramverk1 course.",
+    "name" : "deel18/weather-module",
+    "description": "A weather extension to the framework Anax.",
     "license": "MIT",
     "minimum-stability": "beta",
     "prefer-stable": true,
