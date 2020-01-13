@@ -13,7 +13,6 @@ Install the module using composer.
 Copy the needed files, configuration and setup the module.
 
 ```
-rsync -av vendor/deel18/ramverk1-module/config/ config/
-rsync -av vendor/deel18/ramverk1-module/view/ view/
+rsync -av vendor/deel18/weather-module/config/ config/
+rsync -av vendor/deel18/weather-module/view/ view/
 ```
-
