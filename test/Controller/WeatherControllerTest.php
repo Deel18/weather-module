@@ -10,26 +10,41 @@ use PHPUnit\Framework\TestCase;
  */
 class WeatherControllerTest extends TestCase
 {
+
+    /**
+     * Setup the test.
+     */
+     protected function setUp()
+     {
+         global $di;
+
+         //Setup di
+         $di = new DIFactoryConfig();
+         $di->loadServices(ANAX_INSTALL_PATH . "/config/di");
+
+         //use different cache for unit tests
+         $di->get("cache")->setPath(ANAX_INSTALL_PATH . "/test/cache");
+
+         //setup the controller
+         $controller = new WeatherController();
+         $controller->setDi($di);
+         $controller->initialize();
+     }
+
+     /**
+      * Teardown the test
+      */
+      protected function tearDown()
+      {
+          $di->get("session")->destroy();
+      }
+
+
     /**
      * Test the route "index".
      */
     public function testIndexAction()
     {
-        global $di;
-
-        //Setup di
-        $di = new DIFactoryConfig();
-        $di->loadServices(ANAX_INSTALL_PATH . "/config/di");
-
-        //use different cache for unit tests
-        $di->get("cache")->setPath(ANAX_INSTALL_PATH . "/test/cache");
-
-        //setup the controller
-        $controller = new WeatherController();
-        $controller->setDi($di);
-        $session = $di->get("session");
-
-
         //$di->get("session")->set("res", null);
         //$di->get("session")->set("ip", null);
         //$di->get("session")->set("weatherWeek", null);
@@ -41,8 +56,8 @@ class WeatherControllerTest extends TestCase
 
         $res = $controller->indexAction();
         $this->assertIsObject($res);
-        //$this->assertInstanceOf("Anax\Response\Response", $res);
-        //$this->assertInstanceOf("Anax\Response\ResponseUtility", $res);
+        $this->assertInstanceOf("Anax\Response\Response", $res);
+        $this->assertInstanceOf("Anax\Response\ResponseUtility", $res);
     }
 
 
@@ -51,20 +66,6 @@ class WeatherControllerTest extends TestCase
      */
     public function testIndexActionPost()
     {
-        global $di;
-
-        //Setup di
-        $di = new DIFactoryConfig();
-        $di->loadServices(ANAX_INSTALL_PATH . "/config/di");
-
-        //use different cache for unit tests
-        $di->get("cache")->setPath(ANAX_INSTALL_PATH . "/test/cache");
-
-        //setup the controller
-        $controller = new WeatherController();
-        $controller->setDi($di);
-
-
         $response = $di->get("response");
         $request = $di->get("request");
         $session = $di->get("session");
@@ -72,13 +73,12 @@ class WeatherControllerTest extends TestCase
         //Ip test
         $request->setPost("ip", "194.47.129.126");
         $request->setPost("verify", "Verify");
-
-        //$session->set("res", null);
+        $session->set("res", null);
 
         $res = $controller->indexActionPost();
-        $this->assertIsObject($res);
+        //$this->assertIsObject($res);
         //$response->redirectSelf();
-        //$this->assertInstanceOf("Anax\Response\Response", $res);
-        //$this->assertInstanceOf("Anax\Response\ResponseUtility", $res);
+        $this->assertInstanceOf("Anax\Response\Response", $res);
+        $this->assertInstanceOf("Anax\Response\ResponseUtility", $res);
     }
 }
