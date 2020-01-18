@@ -54,7 +54,7 @@ class WeatherControllerTest extends TestCase
         //$di->get("session")->set("apikey", null);
 
         $res = $controller->indexAction();
-        $this->assertIsObject($res);
+        //$this->assertIsObject($res);
         $this->assertInstanceOf("Anax\Response\Response", $res);
         $this->assertInstanceOf("Anax\Response\ResponseUtility", $res);
     }
