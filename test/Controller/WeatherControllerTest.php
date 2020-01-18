@@ -25,9 +25,11 @@ class WeatherControllerTest extends TestCase
          //use different cache for unit tests
          $di->get("cache")->setPath(ANAX_INSTALL_PATH . "/test/cache");
 
+         $this->di = $di;
+
          //setup the controller
-         $controller = new WeatherController();
-         $controller->setDi($di);
+         $this->controller = new WeatherController();
+         $this->controller->setDi($di);
      }
 
      /**
@@ -35,7 +37,7 @@ class WeatherControllerTest extends TestCase
       */
       protected function tearDown()
       {
-          $di->get("session")->destroy();
+          $this->di->get("session")->destroy();
       }
 
 
@@ -53,7 +55,7 @@ class WeatherControllerTest extends TestCase
         //$di->get("session")->set("longitude", null);
         //$di->get("session")->set("apikey", null);
 
-        $res = $controller->indexAction();
+        $res = $this->controller->indexAction();
         //$this->assertIsObject($res);
         $this->assertInstanceOf("Anax\Response\Response", $res);
         $this->assertInstanceOf("Anax\Response\ResponseUtility", $res);
@@ -65,16 +67,16 @@ class WeatherControllerTest extends TestCase
      */
     public function testIndexActionPost()
     {
-        $response = $di->get("response");
-        $request = $di->get("request");
-        $session = $di->get("session");
+        $response = $this->di->get("response");
+        $request = $this->di->get("request");
+        $session = $this->di->get("session");
 
         //Ip test
         $request->setPost("ip", "194.47.129.126");
         $request->setPost("verify", "Verify");
         $session->set("res", null);
 
-        $res = $controller->indexActionPost();
+        $res = $this->controller->indexActionPost();
         //$this->assertIsObject($res);
         //$response->redirectSelf();
         $this->assertInstanceOf("Anax\Response\Response", $res);
