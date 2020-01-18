@@ -10,11 +10,27 @@ use PHPUnit\Framework\TestCase;
  */
 class WeatherControllerTest extends TestCase
 {
+
+
+    protected function disableExceptionHandling()
+    {
+    $this->oldExceptionHandler = $this->app->make(ExceptionHandler::class);
+    $this->app->instance(ExceptionHandler::class, new class extends Handler {
+        public function __construct() {}
+        public function report(\Exception $e) {}
+        public function render($request, \Exception $e) {
+            throw $e;
+        }
+    });
+    }
+
     /**
      * Test the route "index".
      */
     public function testIndexAction()
     {
+
+
         global $di;
 
         //Setup di
@@ -49,6 +65,10 @@ class WeatherControllerTest extends TestCase
      */
     public function testIndexActionPost()
     {
+
+        $this->disableExceptionHandling();
+
+
         global $di;
 
         //Setup di
