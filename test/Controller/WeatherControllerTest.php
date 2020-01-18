@@ -28,14 +28,14 @@ class WeatherControllerTest extends TestCase
         $controller = new WeatherController();
         $controller->setDi($di);
 
-        $di->get("session")->set("res", null);
-        $di->get("session")->set("ip", null);
-        $di->get("session")->set("weatherWeek", null);
-        $di->get("session")->set("weatherPast", null);
-        $di->get("session")->set("geo", null);
-        $di->get("session")->set("latitude", null);
-        $di->get("session")->set("longitude", null);
-        $di->get("session")->set("apikey", null);
+        //$di->get("session")->set("res", null);
+        //$di->get("session")->set("ip", null);
+        //$di->get("session")->set("weatherWeek", null);
+        //$di->get("session")->set("weatherPast", null);
+        //$di->get("session")->set("geo", null);
+        //$di->get("session")->set("latitude", null);
+        //$di->get("session")->set("longitude", null);
+        //$di->get("session")->set("apikey", null);
 
         $res = $controller->indexAction();
         $this->assertIsObject($res);
@@ -63,19 +63,19 @@ class WeatherControllerTest extends TestCase
         $controller->setDi($di);
 
 
-        $response = $di->get("response");
+        //$response = $di->get("response");
         $request = $di->get("request");
-        $session = $di->get("session");
+        //$session = $di->get("session");
 
         //Ip test
         $request->setPost("ip", "194.47.129.126");
         $request->setPost("verify", "Verify");
 
-        $session->set("res", null);
+        //$session->set("res", null);
 
         $res = $controller->indexActionPost();
         $this->assertIsObject($res);
-        $response->redirectSelf();
+        //$response->redirectSelf();
         //$this->assertInstanceOf("Anax\Response\Response", $res);
         //$this->assertInstanceOf("Anax\Response\ResponseUtility", $res);
     }
