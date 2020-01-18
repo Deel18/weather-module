@@ -27,6 +27,8 @@ class WeatherControllerTest extends TestCase
         //setup the controller
         $controller = new WeatherController();
         $controller->setDi($di);
+        $session = $di->get("session");
+
 
         //$di->get("session")->set("res", null);
         //$di->get("session")->set("ip", null);

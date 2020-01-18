@@ -63,6 +63,6 @@ class WeatherJsonControllerTest extends TestCase
         $res = $controller->weatherjsonActionGet();
         $this->assertIsArray($res);
 
-        //$this->assertArrayHasKey("valid", $res[0]);
+        $this->assertArrayHasKey("valid", $res[0]);
     }
 }
