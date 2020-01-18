@@ -78,16 +78,5 @@ class WeatherControllerTest extends TestCase
         $response->redirectSelf();
         //$this->assertInstanceOf("Anax\Response\Response", $res);
         //$this->assertInstanceOf("Anax\Response\ResponseUtility", $res);
-
-
-        //Coordinates test
-        $request->setPost("latitude", "56.160820");
-        $request->setPost("longitude", "15.586710");
-        $request->setPost("verify", "Verify");
-
-        $session->set("res", null);
-
-        $res = $controller->indexActionPost();
-        $this->assertIsObject($res);
     }
 }
