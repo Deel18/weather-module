@@ -69,6 +69,18 @@ class WeatherControllerTest extends TestCase
         $request = $di->get("request");
         $session = $di->get("session");
 
+
+        //Coordinates test
+        $request->setPost("latitude", "56.160820");
+        $request->setPost("longitude", "15.586710");
+        $request->setPost("verify", "Verify");
+
+        $session->set("res", null);
+
+        $res = $controller->indexActionPost();
+        $this->assertIsObject($res);
+
+
         //Ip test
         $request->setPost("ip", "194.47.129.126");
         $request->setPost("verify", "Verify");
@@ -78,7 +90,7 @@ class WeatherControllerTest extends TestCase
         $res = $controller->indexActionPost();
         var_dump($res);
         $this->assertIsObject($res);
-        $response->redirectSelf();
+        //$response->redirectSelf();
         //$this->assertInstanceOf("Anax\Response\Response", $res);
         //$this->assertInstanceOf("Anax\Response\ResponseUtility", $res);
 
