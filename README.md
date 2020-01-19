@@ -1,6 +1,7 @@
 # Anax Weather Module (v1)
 
 [![Build Status](https://travis-ci.com/Deel18/weather-module.svg?branch=master)](https://travis-ci.com/Deel18/weather-module)
+[![CircleCI](https://circleci.com/gh/Deel18/weather-module.svg?style=svg)](https://circleci.com/gh/Deel18/weather-module)
 
 ### Module
 This module works in conjuction with a Anax installation to provide weather forecasts.
