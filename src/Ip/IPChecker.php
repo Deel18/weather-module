@@ -32,7 +32,7 @@ class IPChecker
         $apiKey = $apiKey["geotag"];
         $curl = curl_init();
 
-        curl_setopt($curl, CURLOPT_URL, "http:/api.ipstack.com/$ipv?access_key=$apiKey");
+        curl_setopt($curl, CURLOPT_URL, "https:/api.ipstack.com/$ipv?access_key=$apiKey");
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 
         $result = curl_exec($curl);
