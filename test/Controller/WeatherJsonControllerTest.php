@@ -64,5 +64,17 @@ class WeatherJsonControllerTest extends TestCase
         $this->assertIsArray($res);
 
         $this->assertArrayHasKey("valid", $res[0]);
+
+        //Coordinates test
+        $request->setGet("latitude", "56.160820");
+        $request->setGet("longitude", "15.586710");
+        $request->setGet("verify", "Verify");
+
+        $res = $controller->weatherjsonActionGet();
+        $this->assertIsArray($res);
+
+        $this->assertArrayHasKey("valid", $res[0]);
+
+
     }
 }
